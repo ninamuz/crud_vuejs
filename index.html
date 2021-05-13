@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <div class="container">
+        
+            <div class="row">
+                
+                <!--div izquierdo: Búsqueda y listado-->
+                <div class="col-xs-12 col-sm-12 col-md-8">
+                    <component 
+                    is="listaproductos" 
+                    :listado="productos" 
+                    :indice="indice" 
+                    :producto="producto"
+                    @seleccionado="capturarSeleccionado" 
+                    @deseleccionado="quitarSeleccion">
+                    </component>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-4">
+                <!--div izquierdo: Componentes Agregar, Editar, Eliminar-->
+                    <keep-alive>
+                        <component
+                        v-if="seccionActual" 
+                        :is="seccionActual.componente" 
+                        :listado_entrada="productos"
+                        :listado="productos"
+                        :indice="indice"
+                        :producto="producto" 
+                        @seleccionado="capturarSeleccionado"
+                        @deseleccionado="quitarSeleccion"
+                        :opciones="opciones"
+                        ></component>
+                    </keep-alive>
+                </div>
+            </div>
+            <hr>
+            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="index.js"></script>
+
+</body>
+
+</html>
